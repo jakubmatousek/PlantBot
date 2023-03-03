@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href={{url_for('static',filename='style/style.css')}}>
+    <script src="static/script/script.js"></script>
+    <title>PlantBot</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>PlantBot</h1>
+        <form action="./set_period" method="post">
+            Zalévat kytku každých
+            <input type="text" value="7" name="watering_period" size="2">
+            dní, po dobu
+            <input type="text" value="4" name="water_for" size="2">
+            sekund
+            <input type="image" src={{url_for('static', filename='img/konev_animation/5.png')}}
+             id="submitButton" value=" nastavit"
+             width="48" height="42"/>
+        </form>
+    </div>
+    <div class='popup' id="popup" style="display: {{display_popup}}">Úpěšně nastaveno na zalévání každých {{nastaveno_dni}} dní</div>
+</body>
+
+<body>

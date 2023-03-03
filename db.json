@@ -1,0 +1,7 @@
+{
+    "watering_period_s": 30,
+    "water_for_s": 3,
+    "water_log":[
+        [0,0]
+    ]
+}
