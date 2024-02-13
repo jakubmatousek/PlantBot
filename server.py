@@ -14,7 +14,7 @@ class Server():
         self.instantiate_demon()
     
     def load_stored_data(self):
-        with open("./db.json", 'r') as f:
+        with open("/home/pi/PlantBot/db.json", 'r') as f:
             self.db = json.load(f)
 
     def update_stored_data(self, watering_period_s, water_for_s):
@@ -22,7 +22,7 @@ class Server():
         self.db["watering_period_s"] = watering_period_s
         self.db["water_for_s"] = water_for_s
 
-        with open("./db.json", "w") as f:
+        with open("home/pi/PlantBot/db.json", "w") as f:
             json.dump(self.db, f, indent=4)
 
     def instantiate_demon(self):
@@ -50,13 +50,14 @@ def index_w_set( setted_value):
 def set_period():
     try:
         if request.method == 'POST':
-            watering_period = int(request.form['watering_period']) * 1440
+            watering_period = int(request.form['watering_period']) * 86400
             water_for = int(request.form["water_for"])
             water_thread = Process(target=water, daemon=True,  args=(water_for,))
             print(water_for, water)
             water_thread.start()
             server.update_stored_data(watering_period, water_for)
-            return redirect("/" + str(round(watering_period/1440)))
+            return redirect("/" + str(round(watering_period/86400)))
+        
     except Exception as e:
         print(e)
         return redirect("/")

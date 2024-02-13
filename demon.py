@@ -23,7 +23,7 @@ class Deamon():
         success = False
         while not success:
             try:
-                with open("./db.json", "w") as db_w:
+                with open("/home/pi/PlantBot/db.json", "w") as db_w:
                     self.db["water_log"].append([time_of_watering, self.water_for])
                     json.dump(self.db, db_w, indent=4)
                 success = True
@@ -34,7 +34,7 @@ class Deamon():
         success = False
         while not success:
             try:     
-                with open("./db.json", "r") as db_file:
+                with open("/home/pi/PlantBot/db.json", "r") as db_file:
                     self.db = json.load(db_file)
                 self.watering_period = self.db["watering_period_s"]
                 self.water_for = self.db["water_for_s"]
